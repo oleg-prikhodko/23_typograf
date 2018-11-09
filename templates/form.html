@@ -37,18 +37,23 @@
         </div>
 
         <div class="form-group">
-          <textarea class="form-control" rows="10" placeholder="Здесь будет результат" disabled="disabled"></textarea>
+          <textarea id="output-text" class="form-control" rows="10" placeholder="Здесь будет результат" readonly></textarea>
         </div>
       </div>
     </div><!-- /.container -->
 
     <script>
+      const inputTextElement = document.getElementById('input-text')
+      const outputTextElement = document.getElementById('output-text')
+      
       function sendToTypographer() {
         return fetch("/api/process", {
           method: "POST",
           headers: {"Content-Type": "application/json; charset=utf-8"},
-          body: JSON.stringify({text: document.getElementById('input-text').value})
+          body: JSON.stringify({text: inputTextElement.value})
         })
+          .then(response => response.text())
+          .then(text => outputTextElement.value = text)
       }
 
     </script>
