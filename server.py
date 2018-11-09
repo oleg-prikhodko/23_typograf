@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+import typographer
 
 app = Flask(__name__)
 
@@ -12,8 +13,9 @@ def form():
 def process_by_typographer():
     # text = request.form["text"]
     # print("Received:", text)
-    print("Data:", request.get_json().get("text"))
-    return "OK"
+    text = request.get_json().get("text")
+    # print("Data:", )
+    return typographer.process(text)
 
 
 if __name__ == "__main__":
