@@ -1,6 +1,22 @@
 # Typograf Service
 
-{TODO. There will be project description}
+Simple typographer service
+
+# Quickstart
+
+Install required modules first:
+
+```bash
+$ pip isntall -r requirements.txt
+```
+
+Then launch it:
+
+```bash
+$ python server.py
+```
+
+Typographer will be available at [http://localhost:5000]()
 
 # Project Goals
 
