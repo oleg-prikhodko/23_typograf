@@ -1,6 +1,6 @@
-# Typograf Service
+# Typographer Service
 
-Simple typographer service
+Simple typographer service with web interface
 
 # Quickstart
 
