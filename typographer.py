@@ -11,10 +11,10 @@ DIGITS_HYPHEN_PATTERN = re.compile(r"(\d){}(\d)".format(HYPHEN))
 SHORT_WORDS_PATTERN = re.compile(r"(^| )(\w{1,2}) (\w)", re.UNICODE)
 DIGIT_WORD_PATTERN = re.compile(r"(\d) (\w)", re.UNICODE)
 DASH_INSIDE_WORD_PATTERN = re.compile(
-    r"(\w)({}|{})(\w)".format(EN_DASH, EM_DASH), re.UNICODE
+    r"(\w){}(\w)".format(EM_DASH), re.UNICODE
 )
 HYPHEN_BETWEEN_WORDS_PATTERN = re.compile(
-    r"(\w) ({}|{}) (\w)".format(HYPHEN, EN_DASH), re.UNICODE
+    r"(\w) {} (\w)".format(HYPHEN), re.UNICODE
 )
 
 
@@ -32,11 +32,11 @@ def process(input_string):
         DIGIT_WORD_PATTERN, r"\1&nbsp;\2", processed_string
     )
     processed_string = re.sub(
-        DASH_INSIDE_WORD_PATTERN, r"\1{}\3".format(HYPHEN), processed_string
+        DASH_INSIDE_WORD_PATTERN, r"\1{}\2".format(HYPHEN), processed_string
     )
     processed_string = re.sub(
         HYPHEN_BETWEEN_WORDS_PATTERN,
-        r"\1 {} \3".format(EM_DASH),
+        r"\1 {} \2".format(EM_DASH),
         processed_string,
     )
     return processed_string

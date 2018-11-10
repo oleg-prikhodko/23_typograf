@@ -10,14 +10,11 @@ class TypographerTestCase(unittest.TestCase):
             typographer.process(sample_text),
             "Hello «my friend», hello; happy «new year»",
         )
-        sample_text = "8(999)888{}77{}22".format(
-            typographer.HYPHEN, typographer.HYPHEN
-        )
+        phone_number = "8(999)888{0}77{0}22"
+        sample_text = phone_number.format(typographer.HYPHEN)
         self.assertEqual(
             typographer.process(sample_text),
-            "8(999)888{}77{}22".format(
-                typographer.EN_DASH, typographer.EN_DASH
-            ),
+            phone_number.format(typographer.EN_DASH),
         )
         sample_text = " hello   world!  \n"
         self.assertEqual(typographer.process(sample_text), "hello world!")
