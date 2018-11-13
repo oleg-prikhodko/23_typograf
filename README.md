@@ -7,7 +7,7 @@ Simple typographer service with web interface
 Install required modules first:
 
 ```bash
-$ pip isntall -r requirements.txt
+$ pip install -r requirements.txt
 ```
 
 Then launch it:
