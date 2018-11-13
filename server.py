@@ -11,16 +11,24 @@ def form():
 
 @app.route("/api/process", methods=["POST"])
 def process_by_typographer():
-    text = request.get_json().get("text")
-    if not text:
+    if request.content_type != "application/json":
         abort(
             Response(
                 status="400",
                 mimetype="application/json",
-                response=json.dumps({"message": "Text is empty"}),
+                response=json.dumps({"message": "Not a JSON"}),
             )
         )
-    processed_text = typographer.process(text)
+    elif "text" not in request.get_json():
+        abort(
+            Response(
+                status="400",
+                mimetype="application/json",
+                response=json.dumps({"message": "No text field"}),
+            )
+        )
+    text = request.get_json().get("text")
+    processed_text = typographer.process(text) if text else ""
     return json.jsonify(text=processed_text)
 
 
